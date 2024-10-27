@@ -67,10 +67,11 @@ moose_table_B = {
 def showMoose(plaintext):
     encoded = ""
     plaintext = plaintext.upper()
+    length = 0
     for i in range(len(plaintext)):
         encoded += moose_table_B[plaintext[i]] + " "
-
-    return encoded[:-1]
+        length += len(moose_table_B[plaintext[i]])
+    return encoded[:-1], length
 
 
 def preprocess(plaintext: str, rule: list, seed: list):
@@ -127,8 +128,9 @@ def main():
     plaintext = st.text_input("Plaintext").upper()
     encoded = ""
     if plaintext:
-        encoded = showMoose(plaintext)
+        encoded, length = showMoose(plaintext)
         st.write(f"Moose Code of {plaintext}: {encoded}")
+        st.write(f"Moose Code length:  {length}")
 
     seed = st.text_input("SEED")
     rule = list(map(int, st.text_input(u"Bits to XOR (Start at 0 from the right): ",
