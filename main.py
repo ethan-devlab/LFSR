@@ -148,7 +148,7 @@ def main():
         bList, rule = preprocess(plaintext, rule, seed_)
         rowList, cipherbit = LSFR(encoded, bList, rule)
 
-        st.write(f"Plaintext: {plaintext} ({encoded[:-1]})")
+        st.write(f"Plaintext: {plaintext} ({encoded})")
         st.write(f"Ciphertext: {cipherbit}")
         header, index = printTable(len(seed), rowList)
         df = pd.DataFrame(rowList, columns=header, index=index).astype(str)  # handle empty str problem
